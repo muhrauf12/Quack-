@@ -1,0 +1,16 @@
+#!/bin/bash
+
+# Set the path to your virtual environment
+source env/bin/activate
+
+# Check if the database exists
+if [ ! -f var/insta485.sqlite3 ]; then
+    echo "Error: can't find database var/insta485.sqlite3"
+    echo "Try: ./bin/insta485db create"
+    exit 1
+fi
+
+# Run the Flask development server
+export FLASK_ENV=development
+export FLASK_APP=insta485
+flask --app insta485 --debug run --host 0.0.0.0 --port 8000

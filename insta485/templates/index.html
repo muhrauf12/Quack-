@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="timeline">
+    {% for post in posts %}
+    <div class="post">
+        <div class="post-header">
+            <div class="poster-info">
+                <a href="/users/{{ post.owner }}/">
+                    <img class="profile-picture" src="{{ post.owner_img_url }}" alt="profile picture">
+                </a>
+                <a href="/users/{{ post.owner }}/" class="username">{{ post.owner }}</a>
+            </div>
+            <a href="/posts/{{ post.postid }}/" class="timestamp">{{ post.timestamp }}</a>
+        </div>
+
+        <!-- Post image -->
+        <div class="post-image">
+            <img src="{{ post.img_url }}" alt="post image">
+        </div>
+
+        <!-- Like count -->
+        <div class="post-interactions">
+            {{ post.likes }} like{% if post.likes != 1 %}s{% endif %}
+        </div>
+
+        <!-- Like/Unlike and Comment buttons -->
+        <div class="interaction-buttons">
+            {% if post.liked_by_logname %}
+            <form action="/likes/?target=/" method="post" enctype="multipart/form-data" class="like-form">
+                <input type="hidden" name="operation" value="unlike"/>
+                <input type="hidden" name="postid" value="{{ post.postid }}"/>
+                <input type="submit" name="unlike" value="unlike" class="button unlike-btn"/>
+            </form>
+            {% else %}
+            <form action="/likes/?target=/" method="post" enctype="multipart/form-data" class="like-form">
+                <input type="hidden" name="operation" value="like"/>
+                <input type="hidden" name="postid" value="{{ post.postid }}"/>
+                <input type="submit" name="like" value="like" class="button like-btn"/>
+            </form>
+            {% endif %}
+
+            <!-- Comment input form -->
+            <form action="/comments/?target=/" method="post" enctype="multipart/form-data" class="comment-form">
+                <input type="hidden" name="operation" value="create"/>
+                <input type="hidden" name="postid" value="{{ post.postid }}"/>
+                <input type="text" name="text" placeholder="Add a comment..." class="comment-input" required/>
+                <input type="submit" name="comment" value="comment" class="button comment-btn"/>
+            </form>
+        </div>
+
+        <!-- Comment section -->
+        <div class="comment-section">
+            {% for comment in post.comments %}
+            <p><a href="/users/{{ comment.owner }}/" class="username">{{ comment.owner }}</a> {{ comment.text }}</p>
+            {% endfor %}
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
+

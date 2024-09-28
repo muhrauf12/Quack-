@@ -1,0 +1,226 @@
+
+.header img {
+    padding: 20px;
+    width: 70px;
+    vertical-align: middle;
+}
+
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+
+.navbar {
+    display: flex;
+    gap: 10px;
+    padding: 40px;
+}
+
+/*posts start*/
+
+.username{
+    font-weight: bold;
+    color: black;
+    text-decoration: none;
+}
+
+.post {
+    border: 1px solid black;
+    width: 650px;
+    margin: 20px;
+}
+
+.post-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+}
+.poster-info {
+    display: flex;
+    align-items: center;
+}
+
+.timestamp {
+    color: darkslategray;
+    text-decoration: none;
+    margin-right: 15px;
+}
+
+.profile-picture {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+}
+
+.post-image img {
+    width: 100%;
+}
+
+.post-interactions {
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+.comment-section {
+    margin-left: 20px;
+}
+
+.timeline {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 20px;
+}
+/*posts end*/
+
+/*user start*/
+.user-title {
+    margin-top: 50px;
+    margin-left: 200px;
+}
+
+.user-info {
+    margin-left: 200px;
+    margin-bottom: 50px;
+}
+
+.user-posts {
+    display: flex;
+    margin-left: 200px;
+    gap: 40px;
+}
+
+/*user end*/
+/* General button styling */
+.button {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    margin: 5px 0;
+}
+
+/* Like and Unlike buttons */
+.like-btn, .unlike-btn {
+    background-color: #3897f0;
+    color: white;
+    transition: background-color 0.3s ease;
+}
+
+.like-btn:hover, .unlike-btn:hover {
+    background-color: #1c6ea4;
+}
+
+/* Comment button */
+.comment-btn {
+    background-color: #58a6ff;
+    color: white;
+    margin-left: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.comment-btn:hover {
+    background-color: #287bb5;
+}
+
+/* Comment input styling */
+.comment-input {
+    width: 300px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-right: 10px;
+    font-size: 14px;
+}
+
+/* Interaction buttons section */
+.interaction-buttons {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+
+/* Centering the buttons in the user-actions section */
+.user-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+/* General button styling */
+.button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    margin: 5px 0;
+}
+
+/* Edit Profile button */
+.edit-btn {
+    background-color: #58a6ff;
+    color: white;
+    transition: background-color 0.3s ease;
+}
+
+.edit-btn:hover {
+    background-color: #287bb5;
+}
+
+/* Logout button */
+.logout-btn {
+    background-color: #d9534f;
+    color: white;
+    transition: background-color 0.3s ease;
+}
+
+.logout-btn:hover {
+    background-color: #c9302c;
+}
+
+/* Upload New Post button */
+.upload-btn {
+    background-color: #5bc0de;
+    color: white;
+    transition: background-color 0.3s ease;
+}
+
+.upload-btn:hover {
+    background-color: #31b0d5;
+}
+
+/* Follow and Unfollow buttons */
+.follow-btn {
+    background-color: #5cb85c;
+    color: white;
+}
+
+.follow-btn:hover {
+    background-color: #4cae4c;
+}
+
+.unfollow-btn {
+    background-color: #d9534f;
+    color: white;
+}
+
+.unfollow-btn:hover {
+    background-color: #c9302c;
+}
+
+/* File input styling */
+.file-input {
+    margin-bottom: 10px;
+}

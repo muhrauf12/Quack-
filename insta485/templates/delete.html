@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="delete-account-container">
+        <h2>{{ username }}</h2>
+
+        <!-- Delete confirmation form -->
+        <form action="/accounts/?target=/" method="post" enctype="multipart/form-data" class="delete-form">
+            <input type="submit" name="delete" value="confirm delete account" class="button delete-btn"/>
+            <input type="hidden" name="operation" value="delete"/>
+        </form>
+    </div>
+{% endblock %}

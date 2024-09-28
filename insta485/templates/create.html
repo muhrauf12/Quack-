@@ -1,0 +1,42 @@
+<a href="/">
+    <img src="/images/logo.png" alt="Instagram Logo">
+</a>
+
+{% block content %}
+<div class="signup-container">
+    <!-- Link to Log in -->
+    <div class="login-link">
+        Have another account? <a href="/accounts/login/">Log in</a>
+    </div>
+    <div class="signup-container">
+        <div class="logo">
+            Insta485
+        </div>
+
+        <!-- Sign-up Form -->
+        <form action="/accounts/?target=/" method="post" enctype="multipart/form-data" class="signup-form">
+            <label for="file">Photo</label>
+            <input type="file" name="file" required/>
+
+            <label for="fullname">Name</label>
+            <input type="text" name="fullname" required/>
+
+            <label for="username">Username</label>
+            <input type="text" name="username" required/>
+
+            <label for="email">Email</label>
+            <input type="email" name="email" required/>
+
+            <label for="password">Password</label>
+            <input type="password" name="password" required/>
+
+            <input type="submit" name="signup" value="sign up" class="button signup-btn"/>
+            <input type="hidden" name="operation" value="create"/>
+        </form>
+
+        <!-- Already have an account link -->
+        <div class="login-link">
+            Have an account? <a href="/accounts/login/">Log in</a>
+        </div>
+    </div>
+{% endblock %}

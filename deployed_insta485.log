@@ -1,0 +1,25 @@
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0* Host ec2-54-204-149-240.compute-1.amazonaws.com:80 was resolved.
+* IPv6: (none)
+* IPv4: 54.204.149.240
+*   Trying 54.204.149.240:80...
+* Connected to ec2-54-204-149-240.compute-1.amazonaws.com (54.204.149.240) port 80
+> GET /accounts/login/ HTTP/1.1
+> Host: ec2-54-204-149-240.compute-1.amazonaws.com
+> User-Agent: curl/8.7.1
+> Accept: */*
+> 
+* Request completely sent off
+< HTTP/1.1 200 OK
+< Server: nginx/1.24.0 (Ubuntu)
+< Date: Sun, 22 Sep 2024 22:20:10 GMT
+< Content-Type: text/html; charset=utf-8
+< Content-Length: 2566
+< Connection: keep-alive
+< 
+{ [2566 bytes data]
+
+100  2566  100  2566    0     0  14913      0 --:--:-- --:--:-- --:--:-- 15005
+* Connection #0 to host ec2-54-204-149-240.compute-1.amazonaws.com left intact

@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1 class="list-title">Followers</h1>
+    <div class="followers-list">
+        {% for follower in followers %}
+        <div class="follower-entry">
+            <img class="profile-picture" src="{{ follower.user_img_url }}" alt="{{ follower.username }}'s profile picture">
+            <a href="/users/{{ follower.username }}/">{{ follower.username }}</a>
+            <div class="relationship">
+                {% if logname == follower.username %}
+                    <!-- Blank for the logged-in user's own profile -->
+                {% elif follower.logname_follows_username %}
+                    following
+                    <!-- Unfollow button -->
+                    <form action="/following/?target={{ current_page_url }}" method="post" enctype="multipart/form-data">
+                        <input type="hidden" name="username" value="{{ follower.username }}"/>
+                        <input type="hidden" name="operation" value="unfollow"/>
+                        <input type="submit" name="unfollow" value="unfollow"/>
+                    </form>
+                {% else %}
+                    not following
+                    <!-- Follow button -->
+                    <form action="/following/?target={{ current_page_url }}" method="post" enctype="multipart/form-data">
+                        <input type="hidden" name="username" value="{{ follower.username }}"/>
+                        <input type="hidden" name="operation" value="follow"/>
+                        <input type="submit" name="follow" value="follow"/>
+                    </form>
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+{% endblock %}
