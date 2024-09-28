@@ -23,6 +23,8 @@
             height: 60%;
             width: 80%;
             padding: 10px;
+            border: 2px solid #666; /* Add border */
+            border-radius: 8px; /* Optional: Adds rounded corners */
         }
 
         .small_box{
@@ -32,24 +34,30 @@
             width:80%;
             height:7%;
             padding: 10px;
+            border: 2px solid #666; /* Add border */
+            border-radius: 8px; /* Optional: Adds rounded corners */
         }
         .microphone{
             position:relative;
             margin-left: 5px;
             float:right;
         }
-        
-
-
-
+        .logo {
+            width: 200px; /* Set the desired width */
+            height: auto; /* Maintains aspect ratio */
+            position: fixed; /* Fixed to the viewport */
+            top: 40px; /* Adjust for spacing from the top */
+            left: 80px;
+            transform: rotate(340deg);
+        }
 
     </style>
 </head>
 <body>
-
-        <div class = "big_box">
-          <p>chat will reply here</p>
-     </div>
+    <img src="../static/images/logo.png" alt="Logo" class="logo" style="width: 100px; height: auto;"> 
+            <div class="big_box">
+                <p>Chat will reply here</p>
+            </div>
         <div class = "small_box">
             <p>type your question here...
             <i style="font-size:24px" class="fa microphone">&#xf130;</i></p>
