@@ -7,16 +7,16 @@ import flask
 import arrow
 from flask import render_template, request, session, url_for, abort, redirect
 from werkzeug.utils import secure_filename
-import insta485
-from insta485 import app
+import Quack
+from Quack import app
 
-LOGGER = flask.logging.create_logger(insta485.app)
+LOGGER = flask.logging.create_logger(Quack.app)
 
 
-@insta485.app.route('/')
+@Quack.app.route('/')
 def show_index():
     """pine."""
-    connection = insta485.model.get_db()
+    connection = Quack.model.get_db()
     connection.execute("PRAGMA foreign_keys = ON;")
     logname = session.get('logname')
     if 'logname' not in session:
@@ -85,22 +85,22 @@ def show_index():
     return flask.render_template("index.html", **context)
 
 
-@insta485.app.route('/uploads/<filename>')
+@Quack.app.route('/uploads/<filename>')
 def uploaded_file(filename):
     """File upload handling."""
     if 'logname' not in session:
         abort(403)
-    upload_folder = pathlib.Path(insta485.app.config['UPLOAD_FOLDER'])
+    upload_folder = pathlib.Path(Quack.app.config['UPLOAD_FOLDER'])
     file_path = upload_folder / filename
     if not file_path.exists():
         abort(404)
     return flask.send_from_directory(upload_folder, filename)
 
 
-@insta485.app.route('/users/<user_url_slug>/')
+@Quack.app.route('/users/<user_url_slug>/')
 def show_user(user_url_slug):
     """Display user's profile page."""
-    connection = insta485.model.get_db()
+    connection = Quack.model.get_db()
     connection.execute("PRAGMA foreign_keys = ON;")
 
     logname = session.get('logname')
@@ -171,10 +171,10 @@ def show_user(user_url_slug):
     return flask.render_template("user.html", **context)
 
 
-@insta485.app.route('/users/<user_url_slug>/followers/')
+@Quack.app.route('/users/<user_url_slug>/followers/')
 def show_followers(user_url_slug):
     """Display the followers of the user."""
-    connection = insta485.model.get_db()
+    connection = Quack.model.get_db()
     connection.execute("PRAGMA foreign_keys = ON;")
 
     logname = session.get('logname')
@@ -230,10 +230,10 @@ def show_followers(user_url_slug):
     return render_template("followers.html", **context)
 
 
-@insta485.app.route('/users/<user_url_slug>/following/')
+@Quack.app.route('/users/<user_url_slug>/following/')
 def show_following(user_url_slug):
     """Display the list of users that the given user is following."""
-    connection = insta485.model.get_db()
+    connection = Quack.model.get_db()
     connection.execute("PRAGMA foreign_keys = ON;")
 
     logname = session.get('logname')
@@ -300,10 +300,10 @@ def get_post(connection, postid_url_slug):
     return connection.execute(post_query, (postid_url_slug,)).fetchone()
 
 
-@insta485.app.route('/posts/<postid_url_slug>/')
+@Quack.app.route('/posts/<postid_url_slug>/')
 def show_post(postid_url_slug):
     """Display a single post."""
-    connection = insta485.model.get_db()
+    connection = Quack.model.get_db()
     connection.execute("PRAGMA foreign_keys = ON;")
 
     logname = session.get('logname')
@@ -366,10 +366,10 @@ def show_post(postid_url_slug):
     return flask.render_template("post.html", **context)
 
 
-@insta485.app.route('/explore/')
+@Quack.app.route('/explore/')
 def explore_users():
     """Display the list of users the logged-in user is not following."""
-    connection = insta485.model.get_db()
+    connection = Quack.model.get_db()
     connection.execute("PRAGMA foreign_keys = ON;")
 
     logname = session.get('logname')
@@ -405,7 +405,7 @@ def explore_users():
     return render_template("explore.html", **context)
 
 
-@insta485.app.route('/accounts/login/')
+@Quack.app.route('/accounts/login/')
 def login():
     """Login."""
     if 'logname' in session:
@@ -413,7 +413,7 @@ def login():
     return render_template('login.html')
 
 
-@insta485.app.route('/accounts/create/', methods=['GET'])
+@Quack.app.route('/accounts/create/', methods=['GET'])
 def create():
     """Adsfafd."""
     if 'logname' in session:
@@ -421,7 +421,7 @@ def create():
     return render_template('create.html')
 
 
-@insta485.app.route('/accounts/delete/', methods=['GET'])
+@Quack.app.route('/accounts/delete/', methods=['GET'])
 def delete_account():
     """Display the account deletion confirmation page."""
     logname = session.get('logname')
@@ -435,14 +435,14 @@ def delete_account():
     return render_template("delete.html", **context)
 
 
-@insta485.app.route('/accounts/edit/', methods=['GET'])
+@Quack.app.route('/accounts/edit/', methods=['GET'])
 def edit_account():
     """Display the account edit page."""
     logname = session.get('logname')
     if 'logname' not in session:
         return redirect(url_for('login'))
 
-    connection = insta485.model.get_db()
+    connection = Quack.model.get_db()
     user_query = """
         SELECT username, fullname, email, filename
         FROM users
@@ -463,7 +463,7 @@ def edit_account():
     return render_template("edit.html", **context)
 
 
-@insta485.app.route('/accounts/password/', methods=['GET'])
+@Quack.app.route('/accounts/password/', methods=['GET'])
 def change_password():
     """Display the password change form."""
     logname = session.get('logname')
@@ -476,7 +476,7 @@ def change_password():
     return render_template("change_password.html", **context)
 
 
-@insta485.app.route('/accounts/auth/', methods=['GET'])
+@Quack.app.route('/accounts/auth/', methods=['GET'])
 def auth_check():
     """Return 200 if the user is logged in, 403 otherwise."""
     if 'logname' in session:
@@ -485,7 +485,7 @@ def auth_check():
     abort(403)
 
 
-@insta485.app.route("/likes/", methods=["POST"])
+@Quack.app.route("/likes/", methods=["POST"])
 def update_likes():
     """Handle the liking and unliking of posts."""
     logname = session.get('logname')
@@ -496,7 +496,7 @@ def update_likes():
     operation = request.form["operation"]
     target = request.args.get('target', '/')
 
-    connection = insta485.model.get_db()
+    connection = Quack.model.get_db()
     connection.execute("PRAGMA foreign_keys = ON;")
 
     user_liked_query = """
@@ -525,7 +525,7 @@ def update_likes():
     return redirect(target)
 
 
-@insta485.app.route("/comments/", methods=["POST"])
+@Quack.app.route("/comments/", methods=["POST"])
 def handle_comments():
     """Handle creating and deleting comments, then redirect."""
     logname = session.get('logname')
@@ -538,7 +538,7 @@ def handle_comments():
     text = request.form.get("text", "").strip()
     target = request.args.get("target", "/")
 
-    connection = insta485.model.get_db()
+    connection = Quack.model.get_db()
     connection.execute("PRAGMA foreign_keys = ON;")
 
     if operation == "create":
@@ -571,7 +571,7 @@ def handle_comments():
     return redirect(target)
 
 
-@insta485.app.route("/posts/", methods=["POST"])
+@Quack.app.route("/posts/", methods=["POST"])
 def handle_posts():
     """Handle creating and deleting posts, then redirect."""
     logname = session.get('logname')
@@ -583,7 +583,7 @@ def handle_posts():
     target = request.args.get("target",
                               url_for('show_user', user_url_slug=logname))
 
-    connection = insta485.model.get_db()
+    connection = Quack.model.get_db()
     connection.execute("PRAGMA foreign_keys = ON;")
 
     if operation == "create":
@@ -597,7 +597,7 @@ def handle_posts():
         suffix = pathlib.Path(filename).suffix.lower()
         uuid_basename = f"{uuid.uuid4().hex}{suffix}"
 
-        upload_folder = pathlib.Path(insta485.app.config['UPLOAD_FOLDER'])
+        upload_folder = pathlib.Path(Quack.app.config['UPLOAD_FOLDER'])
         path = upload_folder / uuid_basename
         fileobj.save(path)
 
@@ -621,7 +621,7 @@ def handle_posts():
         if post is None or post['owner'] != logname:
             abort(403)
         filename_to_delete = post['filename']
-        upload_folder = pathlib.Path(insta485.app.config['UPLOAD_FOLDER'])
+        upload_folder = pathlib.Path(Quack.app.config['UPLOAD_FOLDER'])
         file_path = upload_folder / filename_to_delete
 
         if file_path.exists():
@@ -634,7 +634,7 @@ def handle_posts():
     return redirect(target)
 
 
-@insta485.app.route("/following/", methods=["POST"])
+@Quack.app.route("/following/", methods=["POST"])
 def handle_following():
     """Handle follow and unfollow actions, then redirect."""
     logname = session.get('logname')
@@ -645,7 +645,7 @@ def handle_following():
     username = request.form.get("username")
     target = request.args.get("target", "/")
 
-    connection = insta485.model.get_db()
+    connection = Quack.model.get_db()
     connection.execute("PRAGMA foreign_keys = ON;")
 
     if operation == "follow":
@@ -685,7 +685,7 @@ def handle_following():
     return redirect(target)
 
 
-@insta485.app.route("/accounts/logout/", methods=["POST"])
+@Quack.app.route("/accounts/logout/", methods=["POST"])
 def logout():
     """Log out the user and redirect to the login page."""
     session.clear()
@@ -858,7 +858,7 @@ def handle_account_operations():
     """Handle account operations."""
     operation = request.form.get("operation")
     target = request.args.get("target", "/")
-    connection = insta485.model.get_db()
+    connection = Quack.model.get_db()
     logname = session.get("logname")
 
     if operation == "login":

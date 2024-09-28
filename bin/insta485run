@@ -13,4 +13,4 @@ fi
 # Run the Flask development server
 export FLASK_ENV=development
 export FLASK_APP=insta485
-flask --app insta485 --debug run --host 0.0.0.0 --port 8000
+flask --app Quack --debug run --host 0.0.0.0 --port 8000
