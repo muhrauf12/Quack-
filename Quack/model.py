@@ -15,7 +15,6 @@ def dict_factory(cursor, row):
 
 def get_db():
     """Open a new database connection.
-
     Flask docs:
     https://flask.palletsprojects.com/en/1.0.x/appcontext/#storing-data
     """

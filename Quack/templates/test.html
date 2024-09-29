@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ask questions</title>
+</head>
+<body>
+    <h1>Ask a Healthcare Query</h1>
+    <form method="POST" action="/get_response">
+        <label for="input_text">Enter patient information:</label><br>
+        <input type="text" id="input_text" name="input_text" required><br><br>
+        <input type="submit" value="Submit">
+    </form>
+    <div id="response">
+        <!-- Response from API will be displayed here -->
+    </div>
+</body>
+</html>
