@@ -110,6 +110,9 @@ def get_response():
         seen_messages = set()
         useful_responses = []
 
+        # Define a flag to indicate when to start collecting responses
+        start_collecting = False
+
         for event in response_stream_events:
             if event.startswith("data:"):
                 event_data = event[5:].strip()
@@ -120,16 +123,27 @@ def get_response():
                     # Check for the output type and extract text parts
                     if parsed_event[0] == "output" and "outputs" in parsed_event[1]:
                         outputs = parsed_event[1]["outputs"]["output"]
-                        for part in outputs:
-                            if "parts" in part:
-                                for text_item in part["parts"]:
-                                    if "text" in text_item:
-                                        text_content = text_item["text"]
 
-                                        # Check for duplicate messages
-                                        if text_content not in seen_messages:
-                                            seen_messages.add(text_content)
-                                            useful_responses.append(text_content)
+                        # Set the flag to true when we encounter the first valid output
+                        if not start_collecting:
+                            start_collecting = True
+
+                        # Process only if we have started collecting useful content
+                        if start_collecting:
+                            for part in outputs:
+                                if "parts" in part:
+                                    for text_item in part["parts"]:
+                                        if "text" in text_item:
+                                            text_content = text_item["text"]
+
+                                            # Skip if the response text is the same as the input
+                                            if text_content.strip() == init_patient_info.strip():
+                                                continue
+
+                                            # Check for duplicate messages
+                                            if text_content not in seen_messages:
+                                                seen_messages.add(text_content)
+                                                useful_responses.append(text_content)
                 except json.JSONDecodeError:
                     print("Error parsing event:", event)
 
@@ -138,6 +152,7 @@ def get_response():
 
     # Return the cleaned response text
     return final_response
+
 
 
 @app.route("/logout/")
