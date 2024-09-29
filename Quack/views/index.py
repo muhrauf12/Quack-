@@ -13,7 +13,7 @@ from flask import Flask, request, render_template, jsonify
 import requests
 import json
 
-app = Flask(__name__)
+index = Flask(__name__)
 
 LOGGER = flask.logging.create_logger(Quack.app)
 
@@ -36,7 +36,7 @@ def get_code_quacker():
   #  logname = session.get('logname')
   #  if 'logname' not in session:
   #      return redirect(url_for('get_login'))
-
+    logged_in = "logname" in session
     return render_template('CodeQuacker.html')
 
 @Quack.app.route('/uploads/<filename>')
@@ -52,11 +52,17 @@ def uploaded_file(filename):
 
 @Quack.app.route('/Notesnew/')
 def get_newNotes():
+    logged_in = "logname" in session
     return render_template('Notesnew.html')
 
 @Quack.app.route('/notes/')
 def get_notes():
+    logged_in = "logname" in session
     return render_template('notes.html')
+
+@Quack.app.route('/createAccount/')
+def get_accountC():
+    return render_template('createAccount.html')
 
 @Quack.app.route('/loginPage/')
 def get_login():
@@ -64,10 +70,12 @@ def get_login():
 
 @Quack.app.route('/Lessons/')
 def get_lessons():
+    logged_in = "logname" in session
     return render_template('Lessons.html')
 
 @Quack.app.route('/test/')
 def testy():
+    logged_in = "logname" in session
     return render_template('test.html')
 
 @app.route('/get_response', methods=['POST'])
@@ -121,3 +129,60 @@ def get_response():
         for response in useful_responses:
             print(response)
         return render_template('test.html')
+
+@app.route("/logout/")
+def handle_logout():
+    session.clear()
+    return redirect(url_for('get_login'))
+
+@app.route("/create/", methods=["POST"])
+def handle_create():
+    connection = Quack.model.get_db()
+    username = request.form.get("username")
+    password = request.form.get("password")
+    email = request.form.get("email")
+
+    if not (username and password and email):
+        abort(400)
+
+    existing_user = connection.execute(
+        "SELECT username FROM users WHERE username = ?", (username,)
+    ).fetchone()
+    if existing_user:
+        abort(409)
+
+    password_db_string = (password)
+
+    connection.execute(
+        "INSERT INTO users (username, password, email) "
+        "VALUES (?, ?, ?)",
+        (username, password_db_string, email)
+    )
+
+    session.clear()
+    session["logname"] = username
+    return render_template('index.html')
+
+
+@app.route("/accounts/", methods=["POST"])
+def handle_login():
+    """Handle user login operation."""
+    #operation = request.form.get("operation")
+    #target = request.args.get("target", "/")
+    connection = Quack.model.get_db()
+    username = request.form.get("username")
+    password = request.form.get("password")
+    if not (username and password):
+        abort(400)
+
+    user = connection.execute(
+        "SELECT username, password FROM users WHERE username = ?",
+        (username,)
+    ).fetchone()
+
+    if not user:
+        abort(403)
+
+    session.clear()
+    session["logname"] = user["username"]
+    return render_template('index.html')
