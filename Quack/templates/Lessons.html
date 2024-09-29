@@ -3,11 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <title>Lessons - Quack!</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" 
-    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -19,6 +17,7 @@
 
         .navbar {
             background-color: #F8D586;
+            border-bottom: 2px solid black;
         }
 
         li {
@@ -32,15 +31,12 @@
             margin: 50px;
         }
 
-        .left-side, .right-side {
+        .left-side {
             padding: 20px;
             box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
             border-radius: 15px;
             background-color: white;
             height: 450px; /* Extend the white boxes down more */
-        }
-
-        .left-side {
             flex: 3;  /* 30% of the width */
             margin-right: 25px; /* Space between left and right side */
         }
@@ -87,70 +83,77 @@
         }
 
         .carousel-card {
-            border-radius: 10px;
-            padding: 20px;
-            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2); /* Box shadow to resemble a border */
-            background-color: #f9f3e7;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
             margin-bottom: 20px;
-            height: 400px; /* Set the height of carousel card */
-            overflow: hidden; /* Ensure content within the card does not overflow */
-            /*border: 2px solid black; /* Black border */
+            height: 450px;
+            overflow: hidden;
             display: flex;
             flex-direction: column;
-            radius: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .carousel-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
         }
 
         .card-header {
             font-weight: bold;
-            margin-bottom: 10px;
-            background-color: #f6e8d3;
-            padding: 10px;
-            border-radius: 12px;
-            color: #000000; /* Matching color tone */
+            margin-bottom: 20px;
+            background-color: #F8D586;
+            padding: 15px;
+            border-radius: 15px;
+            color: #333;
             text-align: center;
-            font-size: 1.2rem;
-            border: 2px solid black; /* Black border */
+            font-size: 1.4rem;
+            border: none;
         }
 
         .card-body h5 {
-            margin-top: 20px;
+            margin-top: 25px;
             margin-bottom: 20px;
-            color: #000000; /* Add some color for visual appeal */
-            text-align: left; /* Align text to the left */
-            font-size: 1.1rem;
-            border-bottom: 2px solid black; /* Black border at bottom */
-            display: inline-block; /* Inline block display to adjust width */
-            padding-bottom: 5px; /* Add some padding */
+            color: #F79D42;
+            text-align: left;
+            font-size: 1.2rem;
+            border-bottom: 2px solid #F79D42;
+            display: inline-block;
+            padding-bottom: 5px;
         }
 
         .card p, .card ul {
             margin: 0;
-            padding: 10px;
-            background-color: #fdf3e7;
-            border-radius: 5px;
-            border: 2px solid black; /* Black border */
+            padding: 15px;
+            background-color: #FFF0CE;
+            border-radius: 10px;
+            border: none;
         }
 
         .card p {
-            font-size: 1rem;
-            color: #555; /* Slightly darker text for readability */
+            font-size: 1.1rem;
+            color: #555;
+            line-height: 1.6;
         }
  
         .card ul {
             list-style: none;
-            padding: 0 20px;
+            padding: 15px 20px;
         }
 
         .card ul li {
-            padding: 5px 0;
-            font-size: 0.9rem;
-            color: #333; /* Darker shade for bullet items */
+            padding: 8px 0;
+            font-size: 1rem;
+            color: #333;
         }
-        
+
         .card ul li::before {
-            content: "• ";
-            color: #F79D42; /* Add color to list bullets as well */
-            font-size: 1.2rem;
+            content: "\f0da";
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            color: #F79D42;
+            margin-right: 10px;
         }
 
         @keyframes slideNext {
@@ -188,51 +191,41 @@
 
         .carousel-control-prev,
         .carousel-control-next {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
             width: 50px;
             height: 50px;
-            z-index: 2;
+            background-color: #F8D586;
+            border-radius: 50%;
+            top: 50%;
+            transform: translateY(-50%);
+            opacity: 0.7;
+            transition: all 0.3s ease;
         }
 
         .carousel-control-prev {
-            left: -37px; /* Adjust for wider spacing */
+            left: -25px;
         }
 
         .carousel-control-next {
-            right: -37px; /* Adjust for wider spacing */
+            right: -25px;
+        }
+
+        .carousel-control-prev:hover,
+        .carousel-control-next:hover {
+            opacity: 1;
+            background-color: #F79D42;
         }
 
         .carousel-control-prev-icon,
         .carousel-control-next-icon {
-            background-color: rgba(0, 0, 0, 0.5);
-            border-radius: 50%;
-            padding: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .carousel-control-prev .fa,
-        .carousel-control-next .fa {
-            font-size: 20px;
-            color: black; /* Set the arrow color to black */
-        }
-
-        .carousel-control-prev,
-        .carousel-control-next {
-            opacity: 0;
-            transition: opacity 0.5s ease;
+            width: 20px;
+            height: 20px;
         }
 
         .carousel:hover .carousel-control-prev,
         .carousel:hover .carousel-control-next {
             opacity: 1;
         }
-
     </style>
-    
 </head>
 <body>
 
@@ -285,50 +278,50 @@
                 <div class="carousel-inner">
                     <div class="carousel-item active">
                         <div class="carousel-card">
-                            <div class="card-header">Lesson 1</div>
-                            <p>Description of lesson 1 goes here.</p>
+                            <div class="card-header">Lesson 1: Introduction to Programming</div>
+                            <p>Embark on your coding journey with the fundamentals of programming. Learn about variables, data types, and basic control structures.</p>
                             <div class="card-body">
-                                <h5>Problems to Help You Learn:</h5>
+                                <h5>Challenges to Reinforce Your Learning:</h5>
                                 <ul>
-                                    <li>Problem 1.1: Description of problem 1.1 goes here.</li>
-                                    <li>Problem 1.2: Description of problem 1.2 goes here.</li>
+                                    <li>Create a simple calculator using variables and basic operations</li>
+                                    <li>Design a program that determines if a number is even or odd</li>
                                 </ul>
                             </div>
                         </div>
                     </div>
                     <div class="carousel-item">
                         <div class="carousel-card">
-                            <div class="card-header">Lesson 2</div>
-                            <p>Description of lesson 2 goes here.</p>
+                            <div class="card-header">Lesson 2: Functions and Methods</div>
+                            <p>Dive deeper into programming by learning about functions and methods. Understand how to organize and reuse code effectively.</p>
                             <div class="card-body">
-                                <h5>Problems to Help You Learn:</h5>
+                                <h5>Challenges to Reinforce Your Learning:</h5>
                                 <ul>
-                                    <li>Problem 2.1: Description of problem 2.1 goes here.</li>
-                                    <li>Problem 2.2: Description of problem 2.2 goes here.</li>
+                                    <li>Implement a function to calculate the factorial of a number</li>
+                                    <li>Create a method to reverse a string without using built-in functions</li>
                                 </ul>
                             </div>
                         </div>
                     </div>
                     <div class="carousel-item">
                         <div class="carousel-card">
-                            <div class="card-header">Lesson 3</div>
-                            <p>Description of lesson 3 goes here.</p>
+                            <div class="card-header">Lesson 3: Data Structures</div>
+                            <p>Explore the world of data structures. Learn about arrays, lists, and dictionaries, and how to manipulate them effectively.</p>
                             <div class="card-body">
-                                <h5>Problems to Help You Learn:</h5>
+                                <h5>Challenges to Reinforce Your Learning:</h5>
                                 <ul>
-                                    <li>Problem 3.1: Description of problem 3.1 goes here.</li>
-                                    <li>Problem 3.2: Description of problem 3.2 goes here.</li>
+                                    <li>Implement a stack using an array and create push/pop operations</li>
+                                    <li>Design a program that finds the most frequent element in an array</li>
                                 </ul>
                             </div>
                         </div>
                     </div>
                 </div>
                 <a class="carousel-control-prev" href="#lessonsCarousel" role="button" data-bs-slide="prev">
-                    <span class="fa fa-chevron-left" aria-hidden="true"></span>
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Previous</span>
                 </a>
                 <a class="carousel-control-next" href="#lessonsCarousel" role="button" data-bs-slide="next">
-                    <span class="fa fa-chevron-right" aria-hidden="true"></span>
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Next</span>
                 </a>
             </div>
@@ -336,8 +329,7 @@
     </div>
   </section>
    
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
-     
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
 </body>
 </html>
