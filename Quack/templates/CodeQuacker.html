@@ -25,7 +25,12 @@
             margin-top: 50px;
             margin-left: 50px;
             background-color: white;
-            padding: 20px;
+            display:absolute;
+            height: 60%;
+            width: 80%;
+            padding: 10px;
+            border: 2px solid #666; /* Add border */
+            border-radius: 8px; /* Optional: Adds rounded corners */
         }
 
         .small_box {
@@ -36,15 +41,13 @@
             margin-bottom: 50px;
             margin-left: 50px;
             background-color: rgb(149, 149, 149);
-            height: auto;
-            color: black;
-            align-items: center;
-        }
-
-        .small_box i {
-            font-size: 24px;
-            cursor: pointer;
-            float: left;
+            position: relative;
+            margin-top:0px;
+            width:80%;
+            height:7%;
+            padding: 10px;
+            border: 2px solid #666; /* Add border */
+            border-radius: 8px; /* Optional: Adds rounded corners */
         }
         
         .microphone{
@@ -52,56 +55,26 @@
             margin-left: 5px;
             float:right;
         }
-        
-        .navbar {
-            background-color: #F8D586;
+        .logo {
+            width: 200px; /* Set the desired width */
+            height: auto; /* Maintains aspect ratio */
+            position: fixed; /* Fixed to the viewport */
+            top: 40px; /* Adjust for spacing from the top */
+            left: 80px;
+            transform: rotate(340deg);
         }
 
-        li {
-            margin-right: 30px;
-        }
-
-        .login {
-            color: #000;               /* Darker text color for contrast */
-            text-align: center;
-        }
-
-        .login a {
-            color: #000;               /* Ensures the link text is black */
-            text-decoration: none;     /* Removes underline from link */
-        }
     </style>
     
 </head>
-<body style = "background-color: #FFF0CE;">
+<body>
 
-  <!-- NavBar -->
-  <section id="navbar">
-    <nav class = "navbar navbar-expand-md">
-      <div class = "container-fluid px-3">
-        <a id = "head" class = "navText navbar-brand" aria-current="page" href="./index.html">
-          <img class = "logo" src = "../static/images/logo.png" width = "60" height = "60" />
-          <a style = "text-decoration: none; color: black" href="./index.html">quack!</a>
-        </a>
-        <button id = "toggle" class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class = "navbar-toggler-icon"> </span>
-        </button>
-        
-        <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
-          <ul class="navbar-nav mb-lg-0">
-            <li class="nav-item">
-              <a class="nav-link align-content-center" href="../Locked Page/lockPage.html">lessons</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link align-content-center" href="#">notes</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link align-content-center" href="./CodeQuacker.html">CodeQuacker</a>
-            </li>
-            <li class = "login card container-fluid" style="background-color: #FFF0CE">
-              <a class="nav-link align-content-center" href="./loginPage.html" >log in</a>
-            </li>
-          </ul>
+        <div class = "big_box">
+          <p>chat will reply here</p>
+     </div>
+        <div class = "small_box">
+            <p>type your question here...
+            <i style="font-size:24px" class="fa microphone">&#xf130;</i></p>
         </div>
       </div>
     </nav>
