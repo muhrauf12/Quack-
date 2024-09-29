@@ -112,7 +112,12 @@
             border: none;
         }
 
-        .card-body h5 {
+        .card-body {
+            height: 250px; /* Set a fixed height */
+            overflow-y: auto; /* Enable vertical scrolling */
+        }
+
+        .card-body h5, .card-body h6 {
             margin-top: 25px;
             margin-bottom: 20px;
             color: #F79D42;
@@ -121,6 +126,10 @@
             border-bottom: 2px solid #F79D42;
             display: inline-block;
             padding-bottom: 5px;
+        }
+
+        .card-body h6 {
+            font-size: 1.1rem;
         }
 
         .card p, .card ul {
@@ -146,6 +155,15 @@
             padding: 8px 0;
             font-size: 1rem;
             color: #333;
+        }
+
+        .card ul li a {
+            color: #F79D42; 
+            text-decoration: none;
+        }
+
+        .card ul li a:hover {
+            text-decoration: underline;
         }
 
         .card ul li::before {
@@ -276,45 +294,113 @@
         <div class="right-side">
             <div id="lessonsCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="10000">
                 <div class="carousel-inner">
+                    <!-- Lesson 1 -->
                     <div class="carousel-item active">
                         <div class="carousel-card">
                             <div class="card-header">Lesson 1: Introduction to Programming</div>
-                            <p>Embark on your coding journey with the fundamentals of programming. Learn about variables, data types, and basic control structures.</p>
                             <div class="card-body">
-                                <h5>Challenges to Reinforce Your Learning:</h5>
+                                <h5>Overview:</h5>
+                                <p>Embark on your coding journey with the fundamentals of programming. Learn about variables, data types, and basic control structures.</p>
+                                <p>Programming is a way to instruct the computer to perform various tasks. Understanding variables and data types is crucial as they are the building blocks of any program. Control structures such as loops and conditionals allow us to control the flow of our program.</p>
+                                <h6>Challenges to Reinforce Your Learning:</h6>
                                 <ul>
-                                    <li>Create a simple calculator using variables and basic operations</li>
-                                    <li>Design a program that determines if a number is even or odd</li>
+                                    <li>Create a simple calculator using variables and basic operations. <a href="https://leetcode.com/problems/add-two-numbers/" target="_blank">[LeetCode Problem: Add Two Numbers]</a></li>
+                                    <li>Design a program that determines if a number is even or odd. <a href="https://leetcode.com/problems/palindrome-number/" target="_blank">[LeetCode Problem: Palindrome Number]</a></li>
+                                    <li>Learn about arrays and use them to solve a problem. <a href="https://leetcode.com/problems/two-sum/" target="_blank">[LeetCode Problem: Two Sum]</a></li>
+                                    <li>Implement a program that checks for prime numbers. <a href="https://leetcode.com/problems/count-primes/" target="_blank">[LeetCode Problem: Count Primes]</a></li>
                                 </ul>
                             </div>
                         </div>
                     </div>
+                    <!-- Lesson 2 -->
                     <div class="carousel-item">
                         <div class="carousel-card">
                             <div class="card-header">Lesson 2: Functions and Methods</div>
-                            <p>Dive deeper into programming by learning about functions and methods. Understand how to organize and reuse code effectively.</p>
                             <div class="card-body">
-                                <h5>Challenges to Reinforce Your Learning:</h5>
+                                <h5>Overview:</h5>
+                                <p>Dive deeper into programming by learning about functions and methods. Understand how to organize and reuse code effectively.</p>
+                                <p>Functions and methods are reusable pieces of code that can be called with different arguments to perform tasks. They help in breaking down complex problems into simpler, manageable parts. Using functions improves code readability and maintainability.</p>
+                                <h6>Challenges to Reinforce Your Learning:</h6>
                                 <ul>
-                                    <li>Implement a function to calculate the factorial of a number</li>
-                                    <li>Create a method to reverse a string without using built-in functions</li>
+                                    <li>Implement a function to calculate the factorial of a number. <a href="https://leetcode.com/problems/factorial-trailing-zeroes/" target="_blank">[LeetCode Problem: Factorial Trailing Zeroes]</a></li>
+                                    <li>Create a method to reverse a string without using built-in functions. <a href="https://leetcode.com/problems/reverse-string/" target="_blank">[LeetCode Problem: Reverse String]</a></li>
+                                    <li>Write a function to check if a string is a palindrome. <a href="https://leetcode.com/problems/valid-palindrome/" target="_blank">[LeetCode Problem: Valid Palindrome]</a></li>
+                                    <li>Develop a function to find the maximum depth of a binary tree. <a href="https://leetcode.com/problems/maximum-depth-of-binary-tree/" target="_blank">[LeetCode Problem: Maximum Depth of Binary Tree]</a></li>
                                 </ul>
                             </div>
                         </div>
                     </div>
+                    <!-- Lesson 3 -->
                     <div class="carousel-item">
                         <div class="carousel-card">
                             <div class="card-header">Lesson 3: Data Structures</div>
-                            <p>Explore the world of data structures. Learn about arrays, lists, and dictionaries, and how to manipulate them effectively.</p>
                             <div class="card-body">
-                                <h5>Challenges to Reinforce Your Learning:</h5>
+                                <h5>Overview:</h5>
+                                <p>Explore the world of data structures. Learn about arrays, lists, and dictionaries, and how to manipulate them effectively.</p>
+                                <p>Data structures are ways of organizing and storing data so that they can be accessed and modified efficiently. Common data structures include arrays, lists, stacks, queues, and dictionaries. Choosing the right data structure can significantly affect the performance of your code.</p>
+                                <h6>Challenges to Reinforce Your Learning:</h6>
                                 <ul>
-                                    <li>Implement a stack using an array and create push/pop operations</li>
-                                    <li>Design a program that finds the most frequent element in an array</li>
+                                    <li>Implement a stack using an array and create push/pop operations. <a href="https://leetcode.com/problems/implement-stack-using-queues/" target="_blank">[LeetCode Problem: Implement Stack using Queues]</a></li>
+                                    <li>Design a program that finds the most frequent element in an array. <a href="https://leetcode.com/problems/majority-element/" target="_blank">[LeetCode Problem: Majority Element]</a></li>
+                                    <li>Implement a linked list and perform insertion and deletion operations. <a href="https://leetcode.com/problems/design-linked-list/" target="_blank">[LeetCode Problem: Design Linked List]</a></li>
+                                    <li>Write a program to check if a binary tree is a valid binary search tree. <a href="https://leetcode.com/problems/validate-binary-search-tree/" target="_blank">[LeetCode Problem: Validate Binary Search Tree]</a></li>
                                 </ul>
                             </div>
                         </div>
                     </div>
+                    <!-- Lesson 4 -->
+                    <div class="carousel-item">
+                        <div class="carousel-card">
+                            <div class="card-header">Lesson 4: Sorting Algorithms</div>
+                            <div class="card-body">
+                                <h5>Overview:</h5>
+                                <p>Understand different sorting algorithms like bubble sort, merge sort, and quick sort. Learn how to implement them in your code.</p>
+                                <p>Sorting algorithms are used to arrange data in a particular order, such as ascending or descending. Each sorting algorithm has its strengths and weaknesses and performs differently based on the data set. Knowing which sorting algorithm to use can help optimize your program's efficiency.</p>
+                                <h6>Challenges to Reinforce Your Learning:</h6>
+                                <ul>
+                                    <li>Implement bubble sort and sort an array. <a href="https://leetcode.com/problems/sort-an-array/" target="_blank">[LeetCode Problem: Sort an Array]</a></li>
+                                    <li>Write a program to merge two sorted arrays. <a href="https://leetcode.com/problems/merge-sorted-array/" target="_blank">[LeetCode Problem: Merge Sorted Array]</a></li>
+                                    <li>Implement quick sort and analyze its performance. <a href="https://leetcode.com/problems/sort-colors/" target="_blank">[LeetCode Problem: Sort Colors]</a></li>
+                                    <li>Use merge sort to sort a linked list. <a href="https://leetcode.com/problems/sort-list/" target="_blank">[LeetCode Problem: Sort List]</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Lesson 5 -->
+                    <div class="carousel-item">
+                        <div class="carousel-card">
+                            <div class="card-header">Lesson 5: Recursion</div>
+                            <div class="card-body">
+                                <h5>Overview:</h5>
+                                <p>Learn about recursion and how to solve problems by breaking them down into smaller subproblems. Practice common recursive techniques.</p>
+                                <p>Recursion is a method where the solution to a problem depends on solutions to smaller instances of the same problem. Some problems are naturally recursive, such as the Fibonacci sequence and the Towers of Hanoi. Mastering recursion involves understanding base cases and recursive cases.</p>
+                                <h6>Challenges to Reinforce Your Learning:</h6>
+                                <ul>
+                                    <li>Write a recursive function to compute the nth Fibonacci number. <a href="https://leetcode.com/problems/fibonacci-number/" target="_blank">[LeetCode Problem: Fibonacci Number]</a></li>
+                                    <li>Implement a recursive solution to solve the Towers of Hanoi problem. <a href="https://leetcode.com/problems/tower-of-hanoi/" target="_blank">[LeetCode Problem: Tower of Hanoi]</a></li>
+                                    <li>Create a recursive function to generate all permutations of a string. <a href="https://leetcode.com/problems/permutations/" target="_blank">[LeetCode Problem: Permutations]</a></li>
+                                    <li>Develop a recursive solution to find all subsets of a set. <a href="https://leetcode.com/problems/subsets/" target="_blank">[LeetCode Problem: Subsets]</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Lesson 6 -->
+                    <div class="carousel-item">
+                        <div class="carousel-card">
+                            <div class="card-header">Lesson 6: Dynamic Programming</div>
+                            <div class="card-body">
+                                <h5>Overview:</h5>
+                                <p>Discover dynamic programming and how it can be used to solve complex problems by breaking them down into simpler subproblems.</p>
+                                <p>Dynamic programming is a method for solving complex problems by breaking them down into simpler subproblems. It involves solving each subproblem just once and storing their solutions. Common applications of dynamic programming include finding the shortest path and calculating minimum edit distance.</p>
+                                <h6>Challenges to Reinforce Your Learning:</h6>
+                                <ul>
+                                    <li>Solve the knapsack problem using dynamic programming. <a href="https://leetcode.com/problems/knapsack-problem/" target="_blank">[LeetCode Problem: Knapsack Problem]</a></li>
+                                    <li>Write a program to find the longest common subsequence in a string. <a href="https://leetcode.com/problems/longest-common-subsequence/" target="_blank">[LeetCode Problem: Longest Common Subsequence]</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Add more lessons as needed -->
                 </div>
                 <a class="carousel-control-prev" href="#lessonsCarousel" role="button" data-bs-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
