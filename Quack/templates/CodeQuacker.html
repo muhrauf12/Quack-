@@ -18,20 +18,20 @@
             background-color: #FFF0CE;
         }
 
-        .navbar {
+        /* .navbar {
             background-color: #F8D586;
             border-bottom: 2px solid black;
         }
 
         .navbar-brand {
             font-weight: bold;
-        }
+        } */
 
         .navbar-brand img {
-            width: 30px;
-            height: 30px;
+            width: 60px;
+            height: 60px;
         }
-
+/* 
         .navbar .nav-link {
             color: black;
             font-weight: normal;
@@ -40,7 +40,27 @@
 
         .navbar .nav-link:hover {
             color: #F79D42;
-        }
+        } */
+
+
+
+
+        .navbar {
+    background-color: #F8D586;
+    border-bottom: 2px solid #000000;
+    padding: 10px 0; /* Add padding if needed */
+    height: 88px;
+  }
+
+  #navbar {
+    position: -webkit-sticky; /* For Safari */
+    /* position: sticky; */
+    top: 0;
+    z-index: 1000; /* Ensures the navbar stays above other content */
+    width: 100%; /* Makes sure it covers the entire width */
+    box-shadow: 0 4px 2px -2px rgb(162, 162, 162); /* Optional: Adds a subtle shadow for visibility */
+  }
+
 
         .login.card {
             background-color: #FFF0CE;
