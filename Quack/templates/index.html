@@ -18,11 +18,21 @@
   scroll-behavior: smooth;
  } */
   
-  .navbar {
-      background-color: #F8D586;
-      border-bottom: 2px solid #000000; 
-    /* sticky */
-    } 
+  
+    .navbar {
+    background-color: #F8D586;
+    border-bottom: 2px solid #000000;
+    padding: 10px 0; /* Add padding if needed */
+}
+
+    #navbar {
+    position: -webkit-sticky; /* For Safari */
+    /* position: sticky; */
+    top: 0;
+    z-index: 1000; /* Ensures the navbar stays above other content */
+    width: 100%; /* Makes sure it covers the entire width */
+    box-shadow: 0 4px 2px -2px rgb(162, 162, 162); /* Optional: Adds a subtle shadow for visibility */
+}
 
     body{
         background-color: #FFEEC8;
@@ -47,9 +57,9 @@
     }
 
     .big_ducky{
-        position: absolute;
+        position: relative;
         width: 550px;
-        margin-top: 5%;
+        margin-top: 15%;
         transform: rotate(-15deg);
     }
 
@@ -73,10 +83,10 @@
 
     .index_text1{
         display: grid;
-        position: absolute;
+        position: relative;
         width:550px;
         margin-left: 48%;
-        margin-top:5%;
+        margin-top: -35%;
         /* justify-content: center;
         align-items: center; */
         padding:15px;
@@ -93,11 +103,9 @@
   color: black;
     } 
  
-    #down {
-     /* margin-top: 50%;
-     padding-bottom: 25%; */
+    /* #down {
      margin-top: 100vh;
-     } 
+     }  */
 
     .index_button_div{
         border: 1px solid; 
@@ -105,14 +113,29 @@
         border-radius: 16px;
         width:140px;
         height:50px;
-        background-color: #F8D586;
+        background-color: #ffd062;
         position:relative;
         justify-self: center;
         margin-top: 20px;
         display:flex;
         justify-content: center;
         align-items: center;
+
+        outline: none;
+  color: #fff;
+  
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
      }
+
+     .index_button_div:hover{background-color: #e9bc51}
+
+     .index_button_div:active {
+  background-color: #e2ad3c;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
 
      .index_button{
         font-size: 20px;
@@ -132,14 +155,36 @@ body {
 
 .scroll_to_text {
   padding: 50px 20px;
-  background-color: #F8D586;
+  /* background-color: #F8D586; */
 }
 
-.test{
+div.section{
+    overflow:visible;
+}
+
+/* .test{
     height: 500px;
+} */
+
+.slider__nav{
+    position: relative;
+    margin-bottom: 260px;
 }
 
+.slider__inner{
+    
+    background-color: #fff;
+    height: 80%;
+}
 
+.body{
+    display: flexbox;
+}
+footer {
+    margin-top: auto;
+    background-color: #F8D586; /* Adjust footer background if necessary */
+    padding: 10px 0;
+}
  
 
   </style>
@@ -150,8 +195,8 @@ body {
   
   <!-- NavBar -->
   <section id="navbar">
-    <nav class = "navbar navbar-expand-md">
-      <div class = "container-fluid px-3">
+    <nav class = "navbar fixed-top navbar-expand-md">
+    <div class = "container-fluid px-3">
         <a id = "head" class = "navText navbar-brand" aria-current="page" href="./index.html">
           <img class = "logo" src = "../static/images/logo.png" width = "60" height = "60" />
           <a style = "text-decoration: none; color: black" href="./index.html">quack!</a>
@@ -163,16 +208,16 @@ body {
         <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
           <ul class="navbar-nav mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link align-content-center" href="../Locked Page/lockPage.html">lessons</a>
+              <a class="nav-link align-content-center" href="../templates/Lessons.html">lessons</a>
             </li>
             <li class="nav-item">
               <a class="nav-link align-content-center" href="#">notes</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link align-content-center" href="./CodeQuacker.html">CodeQuaker</a>
+              <a class="nav-link align-content-center" href="../templates/CodeQuacker.html">CodeQuaker</a>
             </li>
             <li class = "login card container-fluid" style="background-color: #FFF0CE">
-              <a class="nav-link align-content-center" href="./loginPage.html" >log in</a>
+              <a class="nav-link align-content-center" href="../templates/loginPage.html" >log in</a>
             </li>
           </ul>
         </div>
@@ -218,36 +263,60 @@ body {
 
 
     <div class="slider">
-        <div class = "slider_circles">
+        <!-- <div class = "slider_circles"> -->
         <input type="radio" name="slider" title="slide1" checked="checked" class="slider__nav"/>
         <input type="radio" name="slider" title="slide2" class="slider__nav"/>
         <input type="radio" name="slider" title="slide3" class="slider__nav"/>
         <input type="radio" name="slider" title="slide4" class="slider__nav"/>
-    </div>
+    
+
+
         <div class="slider__inner">
-          <div class="slider__contents"><i class="slider__image fa fa-codepen"></i>
-            <h2 class="slider__caption">codepen</h2>
-            <p class="slider__txt">Lorem ipsum dolor sit amet, consectetur adipisicing elit. At cupiditate omnis possimus illo quos, corporis minima!</p>
+            
+          <div class="slider__contents"><i class="slider__image fa fa-cubes"></i>
+            <h2 class="slider__caption">How It Works</h2>
+            <p class="slider__txt">
+    
+            Inspired by the rubber duck debugging method, CodeQuacker helps you explain your coding problems—either by typing 
+            or speaking—and provides AI-driven suggestions to guide you to a solution. Articulating your problem is the first step to fully understanding and solving it!
+            </p>
           </div>
-          <div class="slider__contents"><i class="slider__image fa fa-newspaper-o"></i>
-            <h2 class="slider__caption">newspaper-o</h2>
-            <p class="slider__txt">Lorem ipsum dolor sit amet, consectetur adipisicing elit. At cupiditate omnis possimus illo quos, corporis minima!</p>
-          </div>
-          <div class="slider__contents"><i class="slider__image fa fa-television"></i>
-            <h2 class="slider__caption">television</h2>
-            <p class="slider__txt">Lorem ipsum dolor sit amet, consectetur adipisicing elit. At cupiditate omnis possimus illo quos, corporis minima!</p>
+       
+        
+          <div class="slider__contents"><i class="slider__image fa fa-group"></i>
+            <h2 class="slider__caption">Who Are We?</h2>
+            <p class="slider__txt">
+                We're a group of four passionate college students with diverse interests, united by our love for education, debugging, and coding. 
+            Our goal is to make learning through problem-solving fun and accessible to all. 
+            <strong>Our values</strong> are rooted in collaboration, curiosity, and continuous learning. 
+            We believe that explaining your thoughts is key to mastering complex concepts.
+            </p>
+        </div>
+         
+
+
+          <div class="slider__contents"><i class="slider__image fa fa-desktop"></i>
+            <h2 class="slider__caption">Key Features</h2>
+            <p class="slider__txt">
+                
+                    &#8226 Google BreadBoard integration for specialized debugging
+                    <br>&#8226 MySQL-based login system to save past queries
+                    <br>&#8226 Speech-to-text for verbal debugging
+                    <br>&#8226 AI-generated practice problems based on debugging history
+                
+            </p>
           </div>
           <div class="slider__contents"><i class="slider__image fa fa-diamond"></i>
-            <h2 class="slider__caption">diamond</h2>
-            <p class="slider__txt">Lorem ipsum dolor sit amet, consectetur adipisicing elit. At cupiditate omnis possimus illo quos, corporis minima!</p>
+            <h2 class="slider__caption">Rewards System</h2>
+            <p class="slider__txt">The more coding problems you solve with CodeQuacker, the more points you earn! Points can be redeemed 
+                for rewards like class extra credit, customized ducks, or other fun items. As you complete AI-generated 
+                lessons and improve your coding skills, your progress is recognized through rewards that keep you motivated 
+                and engaged in learning.</p>
           </div>
         </div>
       </div>
 
 
-
-
-<!-- end test -->
 
 
 
@@ -276,5 +345,81 @@ body {
 
 
 </body>
+
+<footer class="bg-body-tertiary text-center">
+    <!-- Grid container -->
+    <div class="container p-4 pb-0">
+      <!-- Section: Social media -->
+      <section class="mb-4">
+        <!-- Facebook -->
+        <a
+        data-mdb-ripple-init
+          class="btn text-white btn-floating m-1"
+          style="background-color: #3b5998;"
+          href="#!"
+          role="button"
+          ><i class="fab fa-facebook-f"></i
+        ></a>
+  
+        <!-- Twitter -->
+        <a
+          data-mdb-ripple-init
+          class="btn text-white btn-floating m-1"
+          style="background-color: #55acee;"
+          href="#!"
+          role="button"
+          ><i class="fab fa-twitter"></i
+        ></a>
+  
+        <!-- Google -->
+        <a
+          data-mdb-ripple-init
+          class="btn text-white btn-floating m-1"
+          style="background-color: #dd4b39;"
+          href="#!"
+          role="button"
+          ><i class="fab fa-google"></i
+        ></a>
+  
+        <!-- Instagram -->
+        <a
+          data-mdb-ripple-init
+          class="btn text-white btn-floating m-1"
+          style="background-color: #ac2bac;"
+          href="#!"
+          role="button"
+          ><i class="fab fa-instagram"></i
+        ></a>
+  
+        <!-- Linkedin -->
+        <a
+          data-mdb-ripple-init
+          class="btn text-white btn-floating m-1"
+          style="background-color: #0082ca;"
+          href="#!"
+          role="button"
+          ><i class="fab fa-linkedin-in"></i
+        ></a>
+        <!-- Github -->
+        <a
+          data-mdb-ripple-init
+          class="btn text-white btn-floating m-1"
+          style="background-color: #333333;"
+          href="#!"
+          role="button"
+          ><i class="fab fa-github"></i
+        ></a>
+      </section>
+      <!-- Section: Social media -->
+    </div>
+    <!-- Grid container -->
+  
+    <!-- Copyright -->
+    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.05);">
+      © 2024 Copyright:
+      <a class="text-body" href="https://mdbootstrap.com/">Quack!</a>
+    </div>
+    <!-- Copyright -->
+  </footer>
 
 </html>

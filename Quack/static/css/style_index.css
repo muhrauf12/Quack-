@@ -127,7 +127,7 @@ body {
 .slider__caption {
   font-weight: 500;
   margin: 2rem 0 1rem;
-  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+  text-shadow: 0 1px 1px rgba(255, 92, 92, 0.1);
   text-transform: uppercase;
 }
 .slider__txt {
