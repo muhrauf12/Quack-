@@ -3,11 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <title>Login - Insta485</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" 
-    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <title>Lessons - quack!</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -19,6 +17,7 @@
 
         .navbar {
             background-color: #F8D586;
+            border-bottom: 2px solid black;
         }
 
         li {
@@ -32,15 +31,12 @@
             margin: 50px;
         }
 
-        .left-side, .right-side {
+        .left-side {
             padding: 20px;
             box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
             border-radius: 15px;
             background-color: white;
-            min-height: 80vh; /* Extend the white boxes down more */
-        }
-
-        .left-side {
+            height: 450px; /* Extend the white boxes down more */
             flex: 3;  /* 30% of the width */
             margin-right: 25px; /* Space between left and right side */
         }
@@ -65,10 +61,11 @@
             text-decoration: none; /* Removes underline from link */
         }
 
-        .lesson-title {
-            font-weight: bold;
-            font-size: 1.25rem; /* Adjust font size as needed */
-            margin-bottom: 20px; /* Space below the title */
+        .login-card {
+            background-color: #FFF0CE;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
 
         .profile img {
@@ -79,7 +76,104 @@
             margin-bottom: 20px; /* Space below the profile picture */
         }
 
-        /* Custom animation for sliding */
+        .profile h3 {
+            margin-bottom: 20px; /* Space below the profile header */
+            color: #F79D42; /* Add some color for visual appeal */
+            font-weight: bold;
+        }
+
+        .carousel-card {
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+            margin-bottom: 20px;
+            height: 450px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.3s ease;
+        }
+
+        .carousel-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .card-header {
+            font-weight: bold;
+            margin-bottom: 20px;
+            background-color: #F8D586;
+            padding: 15px;
+            border-radius: 15px;
+            color: #333;
+            text-align: center;
+            font-size: 1.4rem;
+            border: none;
+        }
+
+        .card-body {
+            height: 250px; /* Set a fixed height */
+            overflow-y: auto; /* Enable vertical scrolling */
+        }
+
+        .card-body h5, .card-body h6 {
+            margin-top: 25px;
+            margin-bottom: 20px;
+            color: #F79D42;
+            text-align: left;
+            font-size: 1.2rem;
+            border-bottom: 2px solid #F79D42;
+            display: inline-block;
+            padding-bottom: 5px;
+        }
+
+        .card-body h6 {
+            font-size: 1.1rem;
+        }
+
+        .card p, .card ul {
+            margin: 0;
+            padding: 15px;
+            background-color: #FFF0CE;
+            border-radius: 10px;
+            border: none;
+        }
+
+        .card p {
+            font-size: 1.1rem;
+            color: #555;
+            line-height: 1.6;
+        }
+ 
+        .card ul {
+            list-style: none;
+            padding: 15px 20px;
+        }
+
+        .card ul li {
+            padding: 8px 0;
+            font-size: 1rem;
+            color: #333;
+        }
+
+        .card ul li a {
+            color: #F79D42; 
+            text-decoration: none;
+        }
+
+        .card ul li a:hover {
+            text-decoration: underline;
+        }
+
+        .card ul li::before {
+            content: "\f0da";
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            color: #F79D42;
+            margin-right: 10px;
+        }
+
         @keyframes slideNext {
             0% {
                 transform: translateX(100%);
@@ -113,8 +207,43 @@
             animation: slidePrev 0.5s forwards;
         }
 
+        .carousel-control-prev,
+        .carousel-control-next {
+            width: 50px;
+            height: 50px;
+            background-color: #F8D586;
+            border-radius: 50%;
+            top: 50%;
+            transform: translateY(-50%);
+            opacity: 0.7;
+            transition: all 0.3s ease;
+        }
+
+        .carousel-control-prev {
+            left: -25px;
+        }
+
+        .carousel-control-next {
+            right: -25px;
+        }
+
+        .carousel-control-prev:hover,
+        .carousel-control-next:hover {
+            opacity: 1;
+            background-color: #F79D42;
+        }
+
+        .carousel-control-prev-icon,
+        .carousel-control-next-icon {
+            width: 20px;
+            height: 20px;
+        }
+
+        .carousel:hover .carousel-control-prev,
+        .carousel:hover .carousel-control-next {
+            opacity: 1;
+        }
     </style>
-    
 </head>
 <body>
 
@@ -136,12 +265,11 @@
                         <a class="nav-link align-content-center" href="../Locked Page/lockPage.html">lessons</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link align-content-center" href="#">notes</a>
-                    </li>
+                        <a class="nav-link align-content-center" href="#">notes</a></li>
                     <li class="nav-item">
                         <a class="nav-link align-content-center" href="./CodeQuacker.html">CodeQuacker</a>
                     </li>
-                    <li class="login card container-fluid" style="background-color: #FFF0CE">
+                    <li class="login login-card container-fluid">
                         <a class="nav-link align-content-center" href="./loginPage.html">log in</a>
                     </li>
                 </ul>
@@ -155,8 +283,8 @@
     <div class="container">
         <div class="left-side">
             <div class="profile text-center">
-                <img src="../static/images/profile.jpg" alt="Profile Picture">
                 <h3>Profile</h3>
+                <img src="../static/images/profile.png" alt="Profile Picture">
                 <p>Username: JohnDoe</p>
                 <p>Points Earned: 1200</p>
                 <p>Rewards: Gold Member</p>
@@ -164,90 +292,130 @@
         </div>
         <div class="line-v"></div> <!-- Vertical line -->
         <div class="right-side">
-            <div class="lesson">
-                <div class="lesson-title">Lesson 1</div>
-                <p>Description of lesson 1 goes here.</p>
-                <!-- Carousel for Lesson 1 -->
-                <div id="lesson1Carousel" class="carousel slide" data-bs-ride="carousel">
-                    <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <h5>Problem 1.1</h5>
-                            <p>Description of problem 1.1 goes here.</p>
-                        </div>
-                        <div class="carousel-item">
-                            <h5>Problem 1.2</h5>
-                            <p>Description of problem 1.2 goes here.</p>
-                        </div>
-                    </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#lesson1Carousel" data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#lesson1Carousel" data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Next</span>
-                    </button>
-                </div>
-            </div>
-
-            <div class="lesson mt-5">
-                <div class="lesson-title">Lesson 2</div>
-                <p>Description of lesson 2 goes here.</p>
-                <!-- Carousel for Lesson 2 -->
-                <div id="lesson2Carousel" class="carousel slide" data-bs-ride="carousel">
-                    <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <h5>Problem 2.1</h5>
-                            <p>Description of problem 2.1 goes here.</p>
-                        </div>
-                        <div class="carousel-item">
-                            <h5>Problem 2.2</h5>
-                            <p>Description of problem 2.2 goes here.</p>
+            <div id="lessonsCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="10000">
+                <div class="carousel-inner">
+                    <!-- Lesson 1 -->
+                    <div class="carousel-item active">
+                        <div class="carousel-card">
+                            <div class="card-header">Lesson 1: Introduction to Programming</div>
+                            <div class="card-body">
+                                <h5>Overview:</h5>
+                                <p>Embark on your coding journey with the fundamentals of programming. Learn about variables, data types, and basic control structures.</p>
+                                <p>Programming is a way to instruct the computer to perform various tasks. Understanding variables and data types is crucial as they are the building blocks of any program. Control structures such as loops and conditionals allow us to control the flow of our program.</p>
+                                <h6>Challenges to Reinforce Your Learning:</h6>
+                                <ul>
+                                    <li>Create a simple calculator using variables and basic operations. <a href="https://leetcode.com/problems/add-two-numbers/" target="_blank">[LeetCode Problem: Add Two Numbers]</a></li>
+                                    <li>Design a program that determines if a number is even or odd. <a href="https://leetcode.com/problems/palindrome-number/" target="_blank">[LeetCode Problem: Palindrome Number]</a></li>
+                                    <li>Learn about arrays and use them to solve a problem. <a href="https://leetcode.com/problems/two-sum/" target="_blank">[LeetCode Problem: Two Sum]</a></li>
+                                    <li>Implement a program that checks for prime numbers. <a href="https://leetcode.com/problems/count-primes/" target="_blank">[LeetCode Problem: Count Primes]</a></li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#lesson2Carousel" data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#lesson2Carousel" data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Next</span>
-                    </button>
-                </div>
-            </div>
-
-            <div class="lesson mt-5">
-                <div class="lesson-title">Lesson 3</div>
-                <p>Description of lesson 3 goes here.</p>
-                <!-- Carousel for Lesson 3 -->
-                <div id="lesson3Carousel" class="carousel slide" data-bs-ride="carousel">
-                    <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <h5>Problem 3.1</h5>
-                            <p>Description of problem 3.1 goes here.</p>
-                        </div>
-                        <div class="carousel-item">
-                            <h5>Problem 3.2</h5>
-                            <p>Description of problem 3.2 goes here.</p>
+                    <!-- Lesson 2 -->
+                    <div class="carousel-item">
+                        <div class="carousel-card">
+                            <div class="card-header">Lesson 2: Functions and Methods</div>
+                            <div class="card-body">
+                                <h5>Overview:</h5>
+                                <p>Dive deeper into programming by learning about functions and methods. Understand how to organize and reuse code effectively.</p>
+                                <p>Functions and methods are reusable pieces of code that can be called with different arguments to perform tasks. They help in breaking down complex problems into simpler, manageable parts. Using functions improves code readability and maintainability.</p>
+                                <h6>Challenges to Reinforce Your Learning:</h6>
+                                <ul>
+                                    <li>Implement a function to calculate the factorial of a number. <a href="https://leetcode.com/problems/factorial-trailing-zeroes/" target="_blank">[LeetCode Problem: Factorial Trailing Zeroes]</a></li>
+                                    <li>Create a method to reverse a string without using built-in functions. <a href="https://leetcode.com/problems/reverse-string/" target="_blank">[LeetCode Problem: Reverse String]</a></li>
+                                    <li>Write a function to check if a string is a palindrome. <a href="https://leetcode.com/problems/valid-palindrome/" target="_blank">[LeetCode Problem: Valid Palindrome]</a></li>
+                                    <li>Develop a function to find the maximum depth of a binary tree. <a href="https://leetcode.com/problems/maximum-depth-of-binary-tree/" target="_blank">[LeetCode Problem: Maximum Depth of Binary Tree]</a></li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#lesson3Carousel" data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#lesson3Carousel" data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Next</span>
-                    </button>
+                    <!-- Lesson 3 -->
+                    <div class="carousel-item">
+                        <div class="carousel-card">
+                            <div class="card-header">Lesson 3: Data Structures</div>
+                            <div class="card-body">
+                                <h5>Overview:</h5>
+                                <p>Explore the world of data structures. Learn about arrays, lists, and dictionaries, and how to manipulate them effectively.</p>
+                                <p>Data structures are ways of organizing and storing data so that they can be accessed and modified efficiently. Common data structures include arrays, lists, stacks, queues, and dictionaries. Choosing the right data structure can significantly affect the performance of your code.</p>
+                                <h6>Challenges to Reinforce Your Learning:</h6>
+                                <ul>
+                                    <li>Implement a stack using an array and create push/pop operations. <a href="https://leetcode.com/problems/implement-stack-using-queues/" target="_blank">[LeetCode Problem: Implement Stack using Queues]</a></li>
+                                    <li>Design a program that finds the most frequent element in an array. <a href="https://leetcode.com/problems/majority-element/" target="_blank">[LeetCode Problem: Majority Element]</a></li>
+                                    <li>Implement a linked list and perform insertion and deletion operations. <a href="https://leetcode.com/problems/design-linked-list/" target="_blank">[LeetCode Problem: Design Linked List]</a></li>
+                                    <li>Write a program to check if a binary tree is a valid binary search tree. <a href="https://leetcode.com/problems/validate-binary-search-tree/" target="_blank">[LeetCode Problem: Validate Binary Search Tree]</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Lesson 4 -->
+                    <div class="carousel-item">
+                        <div class="carousel-card">
+                            <div class="card-header">Lesson 4: Sorting Algorithms</div>
+                            <div class="card-body">
+                                <h5>Overview:</h5>
+                                <p>Understand different sorting algorithms like bubble sort, merge sort, and quick sort. Learn how to implement them in your code.</p>
+                                <p>Sorting algorithms are used to arrange data in a particular order, such as ascending or descending. Each sorting algorithm has its strengths and weaknesses and performs differently based on the data set. Knowing which sorting algorithm to use can help optimize your program's efficiency.</p>
+                                <h6>Challenges to Reinforce Your Learning:</h6>
+                                <ul>
+                                    <li>Implement bubble sort and sort an array. <a href="https://leetcode.com/problems/sort-an-array/" target="_blank">[LeetCode Problem: Sort an Array]</a></li>
+                                    <li>Write a program to merge two sorted arrays. <a href="https://leetcode.com/problems/merge-sorted-array/" target="_blank">[LeetCode Problem: Merge Sorted Array]</a></li>
+                                    <li>Implement quick sort and analyze its performance. <a href="https://leetcode.com/problems/sort-colors/" target="_blank">[LeetCode Problem: Sort Colors]</a></li>
+                                    <li>Use merge sort to sort a linked list. <a href="https://leetcode.com/problems/sort-list/" target="_blank">[LeetCode Problem: Sort List]</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Lesson 5 -->
+                    <div class="carousel-item">
+                        <div class="carousel-card">
+                            <div class="card-header">Lesson 5: Recursion</div>
+                            <div class="card-body">
+                                <h5>Overview:</h5>
+                                <p>Learn about recursion and how to solve problems by breaking them down into smaller subproblems. Practice common recursive techniques.</p>
+                                <p>Recursion is a method where the solution to a problem depends on solutions to smaller instances of the same problem. Some problems are naturally recursive, such as the Fibonacci sequence and the Towers of Hanoi. Mastering recursion involves understanding base cases and recursive cases.</p>
+                                <h6>Challenges to Reinforce Your Learning:</h6>
+                                <ul>
+                                    <li>Write a recursive function to compute the nth Fibonacci number. <a href="https://leetcode.com/problems/fibonacci-number/" target="_blank">[LeetCode Problem: Fibonacci Number]</a></li>
+                                    <li>Implement a recursive solution to solve the Towers of Hanoi problem. <a href="https://leetcode.com/problems/tower-of-hanoi/" target="_blank">[LeetCode Problem: Tower of Hanoi]</a></li>
+                                    <li>Create a recursive function to generate all permutations of a string. <a href="https://leetcode.com/problems/permutations/" target="_blank">[LeetCode Problem: Permutations]</a></li>
+                                    <li>Develop a recursive solution to find all subsets of a set. <a href="https://leetcode.com/problems/subsets/" target="_blank">[LeetCode Problem: Subsets]</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Lesson 6 -->
+                    <div class="carousel-item">
+                        <div class="carousel-card">
+                            <div class="card-header">Lesson 6: Dynamic Programming</div>
+                            <div class="card-body">
+                                <h5>Overview:</h5>
+                                <p>Discover dynamic programming and how it can be used to solve complex problems by breaking them down into simpler subproblems.</p>
+                                <p>Dynamic programming is a method for solving complex problems by breaking them down into simpler subproblems. It involves solving each subproblem just once and storing their solutions. Common applications of dynamic programming include finding the shortest path and calculating minimum edit distance.</p>
+                                <h6>Challenges to Reinforce Your Learning:</h6>
+                                <ul>
+                                    <li>Solve the knapsack problem using dynamic programming. <a href="https://leetcode.com/problems/knapsack-problem/" target="_blank">[LeetCode Problem: Knapsack Problem]</a></li>
+                                    <li>Write a program to find the longest common subsequence in a string. <a href="https://leetcode.com/problems/longest-common-subsequence/" target="_blank">[LeetCode Problem: Longest Common Subsequence]</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Add more lessons as needed -->
                 </div>
+                <a class="carousel-control-prev" href="#lessonsCarousel" role="button" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#lessonsCarousel" role="button" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </a>
             </div>
-          
         </div>
     </div>
   </section>
    
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
-      
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
 </body>
 </html>
