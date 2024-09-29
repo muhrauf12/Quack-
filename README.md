@@ -1,4 +1,4 @@
-# Quack- 🦆
+# Quack! 🦆
 
 We are a group of four passionate college students with diverse interests, united by our love for education, debugging, and coding. Our goal is to make learning through problem-solving fun and accessible to all!
 
