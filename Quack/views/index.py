@@ -30,7 +30,7 @@ key = "bb-6g50294g4n3t44t6c374n2e615w246o4l3t632h33196w5i3m6"
 def get_index():
     return render_template('index.html')
 
-@Quack.app.route('/CodeQuaker/')
+@Quack.app.route('/CodeQuacker/')
 def get_code_quacker():
  #   connection = Quack.model.get_db()
     #connection.execute("PRAGMA foreign_keys = ON;")
