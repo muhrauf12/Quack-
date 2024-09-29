@@ -85,33 +85,38 @@ def get_response():
 
     # Prepare payload
     payload = {
-      "$key": key,
-      "text": {
-        "role": "user",
-        "parts": [{ "text": init_patient_info }]
-      }
+        "$key": key,
+        "text": {
+            "role": "user",
+            "parts": [{"text": init_patient_info}]
+        }
     }
     json_payload = json.dumps(payload)
     
     response = requests.post(url, headers=headers, data=json_payload)
 
+    # Open the output file
     with open('out.txt', 'w') as f:
-
+        # Post request to the API and get the streamed events
         response = requests.post(url, headers=headers, data=json_payload)
-        response_stream_events = response.text.split('\n\n')
+
+        # Ensure response text is properly decoded to avoid weird characters
+        response_text = response.content.decode('utf-8', errors='ignore')
+
+        # Split response into individual events
+        response_stream_events = response_text.split('\n\n')
 
         seen_messages = set()
-
         useful_responses = []
 
         for event in response_stream_events:
             if event.startswith("data:"):
-                event_data = event[5:]  
+                event_data = event[5:].strip()
                 try:
-         
+                    # Parse the JSON event data
                     parsed_event = json.loads(event_data)
-            
-            
+
+                    # Check for the output type and extract text parts
                     if parsed_event[0] == "output" and "outputs" in parsed_event[1]:
                         outputs = parsed_event[1]["outputs"]["output"]
                         for part in outputs:
@@ -119,16 +124,20 @@ def get_response():
                                 for text_item in part["parts"]:
                                     if "text" in text_item:
                                         text_content = text_item["text"]
+
+                                        # Check for duplicate messages
                                         if text_content not in seen_messages:
                                             seen_messages.add(text_content)
                                             useful_responses.append(text_content)
-                                    
                 except json.JSONDecodeError:
                     print("Error parsing event:", event)
 
-        for response in useful_responses:
-            print(response)
-        return render_template('test.html')
+    # Combine useful responses into a single string
+    final_response = " ".join(useful_responses)
+
+    # Return the cleaned response text
+    return final_response
+
 
 @app.route("/logout/")
 def handle_logout():

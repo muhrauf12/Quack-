@@ -12,61 +12,70 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&display=swap');
 
-        /* Apply Fredoka font to all text */
         body {
             font-family: 'Fredoka', sans-serif;
             background-color: #FFF0CE;
         }
 
-        /* .navbar {
-            background-color: #F8D586;
-            border-bottom: 2px solid black;
-        }
-
-        .navbar-brand {
-            font-weight: bold;
-        } */
-
         .navbar-brand img {
             width: 60px;
             height: 60px;
         }
-/* 
-        .navbar .nav-link {
-            color: black;
-            font-weight: normal;
-            transition: color 0.3s ease;
-        }
-
-        .navbar .nav-link:hover {
-            color: #F79D42;
-        } */
-
-
-
 
         .navbar {
-    background-color: #F8D586;
-    border-bottom: 2px solid #000000;
-    padding: 10px 0; /* Add padding if needed */
-    height: 88px;
-  }
+            background-color: #F8D586;
+            border-bottom: 2px solid #000000;
+            padding: 10px 0;
+            height: 88px;
+        }
 
-  #navbar {
-    position: -webkit-sticky; /* For Safari */
-    /* position: sticky; */
-    top: 0;
-    z-index: 1000; /* Ensures the navbar stays above other content */
-    width: 100%; /* Makes sure it covers the entire width */
-    box-shadow: 0 4px 2px -2px rgb(162, 162, 162); /* Optional: Adds a subtle shadow for visibility */
-  }
-
+        #navbar {
+            position: -webkit-sticky;
+            top: 0;
+            z-index: 1000;
+            width: 100%;
+            box-shadow: 0 4px 2px -2px rgb(162, 162, 162);
+        }
 
         .login.card {
             background-color: #FFF0CE;
             border: 1px solid #ccc;
             border-radius: 5px;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .big_box, .small_box {
+            margin: 20px;
+            padding: 20px;
+        }
+
+        .response-box {
+            max-height: 300px;
+            overflow-y: auto;
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: #ffffff;
+        }
+
+        .loading-dots span {
+            font-size: 24px;
+            display: inline-block;
+            animation: blink 1.4s infinite;
+        }
+
+        .loading-dots span:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .loading-dots span:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes blink {
+            0% { opacity: 0; }
+            50% { opacity: 1; }
+            100% { opacity: 0; }
         }
     </style>
 </head>
@@ -105,10 +114,22 @@
   <!-- NavBar End -->
 
   <section id="main">
+    <!-- Input Form Section -->
     <div class="card big_box">
-        <div class="card-body" id="ai-response">
-            Generating answer...
+      <form id="input-form">
+        <div class="mb-3">
+          <label for="inputText" class="form-label">Enter your text:</label>
+          <input type="text" class="form-control" id="inputText" name="input_text" required>
         </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    </div>
+
+    <!-- Output Display Section -->
+    <div class="card big_box">
+      <div class="card-body response-box" id="ai-response">
+          <!-- Previous responses will appear here, and the loading animation will be appended at the bottom -->
+      </div>
     </div>
 
     <div class="card small_box">
@@ -118,14 +139,58 @@
 
     <!-- Sound wave bar -->
     <canvas id="sound-wave"></canvas>
-</section>
+  </section>
 
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
-      
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+  <script>
+    document.getElementById('input-form').addEventListener('submit', async function(event) {
+      event.preventDefault();
+
+      const inputText = document.getElementById('inputText').value;
+      const aiResponseElement = document.getElementById('ai-response');
+
+      // Append the user's question in bold before displaying the response
+      const questionElement = document.createElement('p');
+      questionElement.innerHTML = `<strong>Question: ${inputText}</strong>`;
+      aiResponseElement.appendChild(questionElement);
+
+      // Show loading animation right after the question
+      const loadingAnimation = document.createElement('div');
+      loadingAnimation.className = 'loading-dots';
+      loadingAnimation.innerHTML = '<span>.</span><span>.</span><span>.</span>';
+      aiResponseElement.appendChild(loadingAnimation);
+
+      // Scroll to the question element
+      questionElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+      // Send the input to the server
+      const response = await fetch('/get_response', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams({ 'input_text': inputText })
+      });
+
+      const responseText = await response.text();
+
+      // Remove the loading animation
+      aiResponseElement.removeChild(loadingAnimation);
+
+      // Convert newlines to HTML line breaks
+      const formattedResponse = responseText.replace(/\n/g, '<br>');
+
+      // Display the new response below the question
+      const responseElement = document.createElement('p');
+      responseElement.innerHTML = formattedResponse;
+      aiResponseElement.appendChild(responseElement);
+
+      // Scroll back to the question element
+      questionElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+      // Clear the input field
+      document.getElementById('inputText').value = '';
+    });
+  </script>
 </body>
 </html>
