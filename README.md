@@ -14,7 +14,6 @@ We believe that explaining your thoughts is key to mastering complex concepts. T
 ## How CodeQuacker Works
 
 The more coding problems you solve with **CodeQuacker**, the more points you earn! 🎯 Points can be redeemed for rewards such as:
-- Class extra credit 🎓
 - Customized ducks 🦆
 - Other fun items 🎁
 
