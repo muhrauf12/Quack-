@@ -50,7 +50,7 @@
         }
 
         .response-box {
-            max-height: 300px;
+            max-height: 400px;
             overflow-y: auto;
             border: 1px solid #ccc;
             padding: 10px;
@@ -76,6 +76,10 @@
             0% { opacity: 0; }
             50% { opacity: 1; }
             100% { opacity: 0; }
+        }
+
+        .not_so_big{
+          height: fit-content;
         }
     </style>
 </head>
@@ -114,16 +118,6 @@
   <!-- NavBar End -->
 
   <section id="main">
-    <!-- Input Form Section -->
-    <div class="card big_box">
-      <form id="input-form">
-        <div class="mb-3">
-          <label for="inputText" class="form-label">Enter your text:</label>
-          <input type="text" class="form-control" id="inputText" name="input_text" required>
-        </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-      </form>
-    </div>
 
     <!-- Output Display Section -->
     <div class="card big_box">
@@ -132,10 +126,22 @@
       </div>
     </div>
 
-    <div class="card small_box">
-        <p class="question-text">Type your question here...</p>
-        <i class="fa fa-microphone microphone" id="microphone-btn"></i>
+    <!-- Input Form Section -->
+    <div class="card big_box not_so_big">
+      <form id="input-form">
+        <div class="mb-3">
+          <label for="inputText" class="form-label">Enter your text:</label>
+          <input type="text" class="form-control" id="inputText" name="input_text" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form> 
+      <i class="fa fa-microphone microphone" id="microphone-btn"></i>
     </div>
+
+    <!-- <div class="card small_box">
+        <p class="question-text">Type your question here...</p>
+       
+    </div> -->
 
     <!-- Sound wave bar -->
     <canvas id="sound-wave"></canvas>
