@@ -157,19 +157,27 @@
   }
 
   div.section {
-    /* overflow: visible; */
+    overflow: hidden;
     height:fit-content;
     
   }
 
   .slider__nav {
     position: relative;
-    margin-bottom: 260px;
+    margin-bottom: 120px;
+  }
+
+  .slider{
+    height:80%
   }
 
   .slider__inner {
     background-color: #fff;
-    height: 80%;
+    height: 100%;
+  }
+
+  .slider__contents{
+    margin-top: 50px;
   }
 
   .body {
@@ -181,6 +189,11 @@
     background-color: #F8D586;
     padding: 10px 0;
   }
+
+  .bg-body-tertiary {
+    --bs-bg-opacity: 1;
+    background-color: rgb(246 246 246) !important;
+}
 </style>
 
 </head>
@@ -246,7 +259,7 @@
     </div>
 
     <div id="down" class="section scroll_to_text">
-      <!-- <p>With CodeQuacker by quack!, explaining your coding problems is the key to solving them! Inspired by the rubber duck debugging method, our platform encourages students to articulate their challenges, whether technical or conceptual, to find clarity and solutions. CodeQuacker is an AI-assisted tool that takes in your buggy code, either verbally or textually, and outputs the best suggestions to tackle your coding issues. Now, Let's get to quacking the code!</p> -->
+      <!-- <p>With </p> -->
     </div>
 
     <div class="slider">
@@ -340,6 +353,6 @@
     </div>
     <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.05);">
       © 2024 Copyright:
-      <a class="text-body" href="https://mdbootstrap.com/">Quack!</a>
+      <a class="text-body" href="#">Quack!</a>
     </div>
   </footer>
