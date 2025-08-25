@@ -1,6 +1,6 @@
 # Quack! 🦆
 
-We are a group of four passionate college students with diverse interests, united by our love for education, debugging, and coding. Our goal is to make learning through problem-solving fun and accessible to all!
+
 
 <img width="1439" alt="Screenshot 2025-01-08 at 5 35 40 PM" src="https://github.com/user-attachments/assets/6bc22628-c3a9-45a9-9d02-fef7cb1ee6cc" />
 <img width="1442" alt="Screenshot 2025-01-08 at 5 35 57 PM" src="https://github.com/user-attachments/assets/79f29e8d-d813-4373-af66-9bd0f2c5c48e" />
